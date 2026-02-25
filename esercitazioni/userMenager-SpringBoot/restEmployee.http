@@ -1,0 +1,45 @@
+
+GET http://127.0.0.1:8080/employees
+
+###
+GET http://127.0.0.1:8080/employee/1
+
+###
+POST http://127.0.0.1:8080/employee
+Content-Type: application/json 
+
+{
+    "name": "Aldo",
+    "email": "aldobaglio@expriviaemployee.it"
+}
+
+###
+POST http://127.0.0.1:8080/employee
+Content-Type: application/json 
+
+{
+    "name": "Robertone",
+    "email": "robertobolle@expriviaemployee.it"
+}
+
+###
+PUT http://127.0.0.1:8080/employee/1
+Content-Type: application/json 
+
+{
+    "name": "Roberto",
+    "email": "robertobolle@expriviaemployee.it"
+}
+
+###
+DELETE http://127.0.0.1:8080/employee/1
+
+###
+POST http://127.0.0.1:8080/employee/login
+Content-Type: application/json 
+
+{
+    "name": "Alberto",
+    "pwd": "exprivia"
+
+}

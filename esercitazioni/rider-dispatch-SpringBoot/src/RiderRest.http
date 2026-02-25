@@ -1,0 +1,28 @@
+###
+POST http://localhost:8080/api/v1/riders
+Content-Type: application/json
+
+{
+  "name": "Flavio",
+  "fiscalCode": "FS123I549T",
+  "vehicleType": "SCOOTER",
+  "riderStatus": "AVAILABLE",
+  "lastLatitude": 41.9028,
+  "lastLongitude": 12.4964,
+  "lastUpdate": "2026-02-04T11:30:00"
+}
+
+###
+GET http://localhost:8080/api/v1/riders
+Accept: application/json
+
+###
+GET http://localhost:8080/api/v1/riders/FS123I549T
+Accept: application/json
+
+###
+DELETE http://localhost:8080/api/v1/riders/remove/FS123I549T
+
+
+###
+GET http://localhost:8080/api/v1/kafka/latest-riders

@@ -1,0 +1,21 @@
+###
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "name": "Mario",
+  "surname": "Rossi",
+  "birthDate": "1990-05-12",
+  "email": "mario.rossi@example.com"
+}
+
+###
+GET http://localhost:8080/users
+Accept: application/json
+
+###
+GET http://localhost:8080/users/1
+Accept: application/json
+
+###
+DELETE http://localhost:8080/users/1
