@@ -6,13 +6,13 @@ import lombok.Getter;
 public enum Item {
 
     // MATERIALI 
-    WOOD("Legno"),
-    IRON_ORE("Minerale di Ferro"),
-    COAL("Carbone"),
+    WOOD("wood"),
+    IRON_ORE("iron ore"),
+    COAL("coal"),
 
     // OGGETTI CRAFTABILI
-    IRON_INGOT("Lingotto di Ferro" ),
-    IRON_SWORD("Spada di Ferro" );
+    IRON_INGOT("iron ingot" ),
+    IRON_SWORD("iron sword" );
 
     private final String displayName;
 

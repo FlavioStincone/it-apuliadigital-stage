@@ -1,4 +1,4 @@
-package it.exprivia.model;
+package it.exprivia.model.entity;
 
 import io.quarkus.hibernate.reactive.panache.PanacheEntity;
 import it.exprivia.model.enums.Item;
