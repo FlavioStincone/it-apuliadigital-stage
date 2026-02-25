@@ -1,7 +1,7 @@
 package it.exprivia.mapper;
 
-import it.exprivia.model.Inventory;
 import it.exprivia.model.dto.InventoryDTO;
+import it.exprivia.model.entity.Inventory;
 
 import java.util.List;
 

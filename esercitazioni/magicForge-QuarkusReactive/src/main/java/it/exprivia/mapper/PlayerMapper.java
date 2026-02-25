@@ -1,7 +1,7 @@
 package it.exprivia.mapper;
 
-import it.exprivia.model.Player;
 import it.exprivia.model.dto.PlayerDTO;
+import it.exprivia.model.entity.Player;
 
 import java.util.List;
 

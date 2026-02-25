@@ -3,7 +3,7 @@ package it.exprivia.repository;
 import io.quarkus.hibernate.reactive.panache.PanacheRepository;
 import io.quarkus.panache.common.Parameters;
 import io.smallrye.mutiny.Uni;
-import it.exprivia.model.Inventory;
+import it.exprivia.model.entity.Inventory;
 import it.exprivia.model.enums.Item;
 import jakarta.enterprise.context.ApplicationScoped;
 

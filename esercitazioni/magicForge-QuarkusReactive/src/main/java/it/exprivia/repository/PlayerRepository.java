@@ -2,7 +2,7 @@ package it.exprivia.repository;
 
 import io.quarkus.hibernate.reactive.panache.PanacheRepository;
 import io.smallrye.mutiny.Uni;
-import it.exprivia.model.Player;
+import it.exprivia.model.entity.Player;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
