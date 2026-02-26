@@ -40,9 +40,7 @@ public class InventoryServiceImpl implements IInventoryService {
                         .map(mapper::toDTO);
         
     }
-
-    // TODO Aggiustare il codice (eccezioni e metodo craft item)
-
+    
     @Override
     public Uni<List<InventoryDTO>> getPlayerInventory(Long playerId) {
 
@@ -60,30 +58,34 @@ public class InventoryServiceImpl implements IInventoryService {
     @Override
     @WithTransaction
     public Uni<CraftingResponseDTO> craftItem(Long playerId, Recipe recipe) {
-        
+
         return repository.findByPlayerId(playerId)
-                    .invoke(inventoryList -> {
+                         .onItem().ifNull().failWith(new EmptyInventoryException("Inventory not found"))
+                         .chain(inventoryList -> {
 
-                    Map<Item, Inventory> inventoryMap = inventoryList.stream()
-                    .collect(Collectors.toMap(Inventory::getItem, inv -> inv));
+                            if (inventoryList.isEmpty()) {
+                                return Uni.createFrom().failure(new EmptyInventoryException("No Items found, your Inventory is empty"));
+                            }
 
-                    recipe.getIngredients().forEach((reqItem, rqstQuantity) -> {
-                    Inventory playerItem = inventoryMap.get(reqItem);
+                            Map<Item, Inventory> inventoryMap = inventoryList.stream().collect(Collectors.toMap(Inventory::getItem, inv -> inv));
+                            Map<Item, Integer> ingredients = recipe.getIngredients();
 
-                    if (playerItem == null || playerItem.getQuantity() < rqstQuantity) {
-                        throw new InsufficientMaterialsException("Materiali insufficienti per: " + reqItem.getDisplayName());
-                    }
+                            for (Item ingredient : ingredients.keySet()) { //ciciliamo sulel chiavi
 
-                    if(playerItem.getQuantity()-rqstQuantity == 0) {
-                        repository.delete(playerItem);
-                    }
+                                Integer quantityNeeded = ingredients.get(ingredient);
+                                Inventory inventoryItem = inventoryMap.get(ingredient);
 
-                playerItem.setQuantity(playerItem.getQuantity() - rqstQuantity);
-            });
-        })
-        .chain(inventoryList -> addItemToInventory(playerId, recipe.getTargetItem(), 1))
-        .map(savedItem -> new CraftingResponseDTO(true, "Forgiato con successo!", recipe.getTargetItem().name()))
-        .onItem().failWith(() -> new EmptyInventoryException("No Items found, your Inventory is empty"))
-;
+                                if (inventoryItem == null || inventoryItem.getQuantity() < quantityNeeded) {
+                                    return Uni.createFrom().failure(new InsufficientMaterialsException("amount of " + ingredient.getDisplayName() + " insufficent"));
+                                }
+
+                                inventoryItem.setQuantity(inventoryItem.getQuantity() - quantityNeeded);
+                            }        
+                            // parte del foreach l'ho creato con l'aiuto dell'AI     
+            
+                            return Uni.createFrom().voidItem();
+                        })
+                        .chain(() -> addItemToInventory(playerId, recipe.getTargetItem(), 1))
+                        .map(savedItem -> new CraftingResponseDTO(true, "Successfully forged!",recipe.getTargetItem().name()));
     }
 }
