@@ -26,7 +26,8 @@ public class PlayerServiceImpl implements IPlayerService {
         
         Player newPlayer = new Player(username, email);
 
-        return repository.persist(newPlayer).onItem().transform(player -> mapper.toDTO(player));
+        return repository.persist(newPlayer)
+                         .onItem().transform(mapper::toDTO);
     }
 
     @Override
