@@ -49,13 +49,12 @@ public class PlayerServiceImpl implements IPlayerService {
 
     @Override
     @WithTransaction
-    public Uni<PlayerDTO> deletePlayer(String username) {
-        
+    public Uni<Void> deletePlayer(String username) {
+
         return repository.findByUsername(username)
-                         .onItem().ifNull().failWith(() -> new PlayerNotFoundException("User " + username + " not found"))
-                         .chain(player -> repository.delete(player)
-                         .replaceWith(mapper.toDTO(player)));
-        
+                .onItem().ifNull()
+                .failWith(() -> new PlayerNotFoundException("User " + username + " not found"))
+                .chain(player -> repository.delete(player));
     }
     
 }

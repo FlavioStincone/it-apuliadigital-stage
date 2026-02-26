@@ -13,5 +13,5 @@ public interface IPlayerService {
 
     public Uni<List<PlayerDTO>> findAllPlayers();
 
-    public Uni<PlayerDTO> deletePlayer(String username);
+    public Uni<Void> deletePlayer(String username);
 }
