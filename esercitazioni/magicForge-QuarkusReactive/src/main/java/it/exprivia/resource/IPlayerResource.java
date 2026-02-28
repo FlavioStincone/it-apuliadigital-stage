@@ -3,6 +3,7 @@ package it.exprivia.resource;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import io.smallrye.mutiny.Uni;
 import it.exprivia.model.dto.PlayerDTO;
@@ -13,6 +14,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 @Produces(MediaType.APPLICATION_JSON)
+@Tag(name = "Player Management", description = "All player-related operations")
 public interface IPlayerResource {
 
     @Operation(summary = "create a new player", description = "registers a player in the database and returns his basic profile")

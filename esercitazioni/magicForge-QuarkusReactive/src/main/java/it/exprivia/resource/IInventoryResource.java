@@ -3,6 +3,7 @@ package it.exprivia.resource;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import io.smallrye.mutiny.Uni;
 import it.exprivia.model.dto.InventoryDTO;
@@ -15,6 +16,7 @@ import jakarta.ws.rs.core.Response;
 
 
 @Produces(MediaType.APPLICATION_JSON)
+@Tag(name = "Inventory & Crafting", description = "Object management and crafting system")
 public interface IInventoryResource {
     
     @Operation(summary = "adds an item to the inventory", description = "adds a certain number of items to the selected player's inventory")
