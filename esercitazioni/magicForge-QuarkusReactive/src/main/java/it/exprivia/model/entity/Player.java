@@ -21,15 +21,12 @@ public class Player extends PanacheEntity{
     @Column(nullable = false, unique = true)
     private String email;
     
-    private int level;
+    private int level = 1;
     private int experience;
     
     public Player(String username, String email){
-
         this.username = username;
         this.email = email;
-        this.level = 1;
-        this.experience = 0;
     }
 
     public int addExperience(int xp) {
