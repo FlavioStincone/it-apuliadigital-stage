@@ -7,10 +7,10 @@ import lombok.Getter;
 public enum Recipe {
 
     // 2 Iron Ore -> 1 Iron Ingot
-    CRAFT_IRON_INGOT(Item.IRON_INGOT, Map.of(Item.IRON_ORE, 2)),
+    IRON_INGOT(Item.IRON_INGOT, Map.of(Item.IRON_ORE, 2)),
 
     // 2 Iron Ingot + 1 Wood -> 1 Iron Sword 
-    CRAFT_IRON_SWORD(Item.IRON_SWORD, Map.of(Item.IRON_INGOT, 2,  Item.WOOD, 1));
+    IRON_SWORD(Item.IRON_SWORD, Map.of(Item.IRON_INGOT, 2,  Item.WOOD, 1));
 
     private final Item targetItem;
     private final Map<Item, Integer> ingredients;
