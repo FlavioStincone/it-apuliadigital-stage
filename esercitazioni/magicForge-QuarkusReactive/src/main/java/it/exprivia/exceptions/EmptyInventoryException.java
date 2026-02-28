@@ -7,7 +7,7 @@ public class EmptyInventoryException extends WebApplicationException {
 
     public EmptyInventoryException(String message) {
 
-        super(message, Response.Status.BAD_REQUEST);
+        super(message, Response.Status.NOT_FOUND);
         
     }
     

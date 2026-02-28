@@ -1,15 +1,16 @@
 package it.exprivia.model.dto;
 
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
 import it.exprivia.model.enums.Item;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 
 public record InventoryDTO(
-    
-    @NotBlank(message = "Item cannot be null")
+
+    @Schema(description = "the item")
     Item item, 
     
-    @NotBlank(message = "Quantity cannot be null")
+    @Schema(description = "the quantity of the item")
     @Positive(message = "Quantity must be greater than 0")
     int quantity
 ) {}
